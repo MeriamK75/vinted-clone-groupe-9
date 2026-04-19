@@ -27,8 +27,7 @@ export const CataloguePage = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center py-10">Chargement...</p>;
-  if (isError) return <p className="text-center py-10 text-red-500">Une erreur est survenue.</p>;
+ 
 
   return (
     <div className="p-6">
@@ -41,6 +40,12 @@ export const CataloguePage = () => {
         onPriceMaxChange={setPriceMax}
         onSortChange={setSort}
       />
+      {isLoading && (
+        <p className="text-center py-10 text-gray-500">Chargement des articles...</p>
+      )}
+      {isError && (
+        <p className="text-center py-10 text-red-500">Erreur lors du chargement des articles.</p>
+      )}
       {articles?.length === 0 ? (
         <p className="text-center py-10 text-gray-500">Aucun article ne correspond à votre recherche.</p>
       ) : (
