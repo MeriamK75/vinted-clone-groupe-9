@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "../services/api";
 import type { Article } from "../types/article";
 import { ArticleCard } from "../components/ArticleCard";
 import { SearchBar } from "../components/SearchBar";
 
 export const CataloguePage = () => {
+  const queryClient = useQueryClient();
+  
+  useEffect(() => {
+    queryClient.removeQueries({ queryKey: ["articles"] });
+  }, []);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [condition, setCondition] = useState("");
