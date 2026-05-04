@@ -71,7 +71,12 @@ export default function MyArticlesPage() {
         {myArticles.map((article) => (
           <div key={article.id} className="relative">
             <ArticleCard article={article} />
-
+            <Link
+              to={"/articles/" + article.id + "/edit"}
+              className="absolute top-2 right-2 z-20 bg-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md"
+            >
+              Modifier
+            </Link>
             <button
               onClick={() => handleDelete(article.id)}
               disabled={deleteMutation.isPending}
